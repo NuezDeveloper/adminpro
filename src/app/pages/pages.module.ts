@@ -10,6 +10,7 @@ import { ProgressComponent } from './progress/progress.component';
 import { GraphicsComponent } from './graphics/graphics.component';
 import { BoosterComponent } from '../components/booster/booster.component';
 import { DoughnutComponent } from '../components/doughnut/doughnut.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PagesComponent } from './pages.component';
 
 // Rutas
@@ -26,12 +27,8 @@ import { SharedModule } from '../shared/shared.module';
         ProgressComponent,
         GraphicsComponent,
         BoosterComponent,
-        DoughnutComponent
-    ],
-    exports: [
-        DashboardComponent,
-        ProgressComponent,
-        GraphicsComponent
+        DoughnutComponent,
+        AccountSettingsComponent
     ],
     imports: [
         SharedModule,

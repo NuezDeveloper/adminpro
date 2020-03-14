@@ -1,6 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Label, MultiDataSet } from 'ng2-charts';
-import { ChartType } from 'chart.js';
 
 @Component({
   selector: 'app-doughnut',
@@ -9,9 +7,9 @@ import { ChartType } from 'chart.js';
 })
 export class DoughnutComponent implements OnInit {
 
-  @Input('chartLabels') doughnutChartLabels: Label[] = [];
-  @Input('chartData') doughnutChartData: MultiDataSet = [];
-  @Input('chartType') doughnutChartType: ChartType = 'doughnut';
+  @Input('chartLabels') doughnutChartLabels: string[] = [];
+  @Input('chartData') doughnutChartData: number[] = [];
+  @Input('chartType') doughnutChartType: string = 'bar';
 
   constructor() { }
 
