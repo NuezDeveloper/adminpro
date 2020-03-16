@@ -18,6 +18,8 @@ import { PAGES_ROUTES } from './pages.routes';
 
 // Modulos
 import { SharedModule } from '../shared/shared.module';
+import { PromisesComponent } from './promises/promises.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { SharedModule } from '../shared/shared.module';
         GraphicsComponent,
         BoosterComponent,
         DoughnutComponent,
-        AccountSettingsComponent
+        AccountSettingsComponent,
+        PromisesComponent,
+        RxjsComponent
     ],
     imports: [
         SharedModule,

@@ -11,7 +11,7 @@ export class SidebarComponent implements OnInit {
   constructor( public _sidebar: SidebarService) { }
 
   ngOnInit(): void {
-    console.log(this._sidebar.menu.submenu.length);
+    // console.log(this._sidebar.menu[0].submenu.length);
   }
 
 }
