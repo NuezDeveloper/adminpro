@@ -29,9 +29,13 @@ export class LoginComponent implements OnInit {
     this.email = localStorage.getItem('email');
     console.log(localStorage.getItem('email'));
 
-    if (this.email.length > 1) {
+    if (localStorage.getItem('email')) {
       this.rememberme = true;
     }
+
+    // if (this.email !== '' || this.email.length > 0) {
+    //   this.rememberme = true;
+    // }
   }
 
   googleInit() {

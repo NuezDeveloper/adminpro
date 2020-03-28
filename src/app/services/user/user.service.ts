@@ -7,6 +7,7 @@ import { URL_SERVICES } from '../../config/config';
 import { map } from 'rxjs/operators';
 import swal from 'sweetalert';
 import { Router } from '@angular/router';
+import { UploadFileService } from '../upload/upload-file.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +18,13 @@ export class UserService {
   token: string;
 
   constructor(public http: HttpClient,
-              public router: Router) {
+              public router: Router,
+              public uploadFile: UploadFileService) {
     this.loadStorage();
   }
 
   isLoggedIn(): boolean {
-    return (this.token.length > 5);
+    return (this.token !== '');
   }
 
   loadStorage() {
@@ -92,5 +94,29 @@ export class UserService {
               return resp.user;
             }));
 
+  }
+
+  updateUser(user: User) {
+    let url = URL_SERVICES + '/user/' + user._id;
+    url += '?token=' + this.token;
+    return this.http.put(url, user)
+                .pipe(map( (resp: any) => {
+                  // this.user = resp.user;
+                  const userDB = resp.user;
+                  this.saveStorage(userDB._id, this.token, userDB);
+                  swal('Usuario Actualizado', user.name, 'success');
+
+                  return true;
+                }));
+  }
+
+  changeImage( file: File, id: string) {
+    this.uploadFile.uploadFile(file, 'users', id)
+                  .then( (resp: any) => {
+                    this.user.img = resp.user.img;
+                    swal('Imagen de usuario actualizada', this.user.name, 'success');
+                    this.saveStorage(id, this.token, this.user);
+                  })
+                  .catch( resp => console.error(resp));
   }
 }
