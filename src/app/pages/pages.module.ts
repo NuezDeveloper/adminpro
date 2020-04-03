@@ -23,6 +23,8 @@ import { PAGES_ROUTES } from './pages.routes';
 import { SharedModule } from '../shared/shared.module';
 import { PipesModule } from '../pipes/pipes.module';
 import { CommonModule } from '@angular/common';
+import { UsersComponent } from './users/users.component';
+import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { CommonModule } from '@angular/common';
         AccountSettingsComponent,
         PromisesComponent,
         RxjsComponent,
-        ProfileComponent
+        ProfileComponent,
+        UsersComponent,
+        ModalUploadComponent
     ],
     imports: [
         SharedModule,

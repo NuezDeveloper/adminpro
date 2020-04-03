@@ -12,10 +12,10 @@ export class LoginGuardGuard implements CanActivate {
 
   canActivate() {
     if (this.userService.isLoggedIn()) {
-      console.log('paso');
+
       return true;
     } else {
-      console.log('no paso');
+
       this.router.navigate(['/login']);
       return false;
     }

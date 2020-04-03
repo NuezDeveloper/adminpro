@@ -99,11 +99,15 @@ export class UserService {
   updateUser(user: User) {
     let url = URL_SERVICES + '/user/' + user._id;
     url += '?token=' + this.token;
+    console.log(user);
+    console.log(this.token);
     return this.http.put(url, user)
                 .pipe(map( (resp: any) => {
                   // this.user = resp.user;
-                  const userDB = resp.user;
-                  this.saveStorage(userDB._id, this.token, userDB);
+                  if (user._id === this.user._id) {
+                    const userDB: User = resp.user;
+                    this.saveStorage(userDB._id, this.token, userDB);
+                  }
                   swal('Usuario Actualizado', user.name, 'success');
 
                   return true;
@@ -118,5 +122,20 @@ export class UserService {
                     this.saveStorage(id, this.token, this.user);
                   })
                   .catch( resp => console.error(resp));
+  }
+
+  loadUsers(from: number = 0) {
+    const url = URL_SERVICES + '/user?from=' + from;
+    return this.http.get(url);
+  }
+
+  searchUser( term: string ) {
+    const url = URL_SERVICES + '/search/collection/user/' + term;
+    return this.http.get(url).pipe(map( (resp: any) => resp.user ));
+  }
+
+  deleteUser( id: string ) {
+    const Url = URL_SERVICES + '/user/' + id + '?token=' + this.token;
+    return this.http.delete(Url);
   }
 }

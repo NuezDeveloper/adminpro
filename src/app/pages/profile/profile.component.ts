@@ -50,8 +50,8 @@ export class ProfileComponent implements OnInit {
 
     this.uploadImage = file;
 
-    let reader = new FileReader();
-    let urlImgTemp = reader.readAsDataURL(file);
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
     reader.onloadend = () => this.imgTemp = reader.result + '';
   }
 
